@@ -230,7 +230,7 @@ sub process_line($)
 
 	if($prog =~ /^postfix\/(.*)/) {
 		my $prog = $1;
-		if($prog eq 'smtp' or ($opt{'lmtp-is-smtp'} and $prog eq 'lmtp')) {
+		if($prog eq 'smtp' or $prog eq 'relay/smtp' or ($opt{'lmtp-is-smtp'} and $prog eq 'lmtp')) {
 			if($text =~ /\bstatus=sent\b/) {
 				return if $opt{'ignore-localhost'} and
 					$text =~ /\brelay=[^\s\[]*\[127\.0\.0\.1\]/;
